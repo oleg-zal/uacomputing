@@ -1,0 +1,62 @@
+@charset "utf-8";
+/*COMPONENTS*/
+.left{float:left; display:block;}
+.right{float:right; display:block;}
+.clear{clear:both}
+.absolute{position:absolute;}
+a{outline:none}
+
+a:hover{opacity:.8}
+h1{font-size:36px; font-weight:normal;}
+
+/*.middle h1{color:#FFFFFF}*/
+
+a.allProj {background:#ebebeb; padding:10px 20px; border-radius:100px; text-decoration:none;}
+a.allProj span{
+color:#333333;
+text-decoration:none;
+background:#ebebeb url(images/arrow.png) right center  no-repeat;
+padding-right:25px;
+}
+
+formtr{}
+
+input[type='search'], input[type='text'], textarea{
+-webkit-border-radius:3px;
+-moz-border-radius:3px;
+background: -moz-linear-gradient(center top , #FAFAFA, #FFFFFF) repeat scroll 0 0 transparent;
+border: 1px solid #d7d7d7;
+box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset;
+border-radius:2px;
+padding:0px 7px;
+font-size:18px;
+color:#666666 !important;
+clear:both;
+display:block;
+margin-bottom:5px;
+height:35px;
+color:#909090;
+}
+
+input[type='search'].notvalid, input[type='text'].notvalid, textarea.notvalid{
+border-color:#f2c3c3;
+background: rgb(255,242,242); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(255,242,242,1) 0%, rgba(255,231,231,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,242,242,1)), color-stop(100%,rgba(255,231,231,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,242,242,1) 0%,rgba(255,231,231,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,242,242,1) 0%,rgba(255,231,231,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,242,242,1) 0%,rgba(255,231,231,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(255,242,242,1) 0%,rgba(255,231,231,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff2f2', endColorstr='#ffe7e7',GradientType=0 ); /* IE6-9 */
+}
+
+.red{color:#C00; font-size:12px;}
+.green{color:#093; font-size:12px;}
+
+
+.contact input[type='search'], .contact input[type='text'], .contact textarea{
+border: 3px solid #0F5531;
+color:#0F5531;
+}
+
+textarea{padding:10px !important; font-size:15px !important; font-family:Arial, Helvetica, sans-serif; color:#0F5531}

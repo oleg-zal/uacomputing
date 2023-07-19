@@ -1,0 +1,30 @@
+/* This stylesheet is used to reset the main part of the default browsers styling. */
+
+html, body, form, fieldset {
+	margin: 0;
+	padding: 0;
+/*	font: 100%/120% Verdana, Helvetica, Arial, sans-serif;*/
+}
+
+h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol, dl, address {
+	margin: 0;
+	padding: 0;
+}
+
+/*h2, h3, h4, h5, h6, pre, code { font-size: 1em; }*/
+
+li, dd, blockquote { margin: 0; }
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+form label { cursor: pointer; }
+
+fieldset { 	border: none; }
+
+input, select, textarea { font-size: 100%; }
+
+a img, :link img, :visited img { border:none }
+
+address { font-style: normal }
+
+td, th{text-align:left;}

@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+/**
+ * The Header for our theme.
+ *
+ * Displays all of the <head> section and everything up till <div id="main">
+ *
+ * @package WordPress
+ * @subpackage Twenty_Eleven
+ * @since Twenty Eleven 1.0
+ */
+?>
+
+<?php
+function curPageURL() {
+ $pageURL = 'http';
+ if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+ $pageURL .= "://";
+ if ($_SERVER["SERVER_PORT"] != "80") {
+  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+ } else {
+  $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+ }
+ return $pageURL;
+}
+?>
+<?php
+$lang = strtok(curPageURL(),'.');
+
+if($lang == 'http://ua'){
+$_GET["lang"] = 'ua';
+define('WP_HOME','http://ua.uacomputing.com');
+define('WP_SITEURL','http://ua.uacomputing.com');
+} else
+if($lang == 'http://en'){
+$_GET["lang"] = 'en';
+define('WP_HOME','http://en.uacomputing.com');
+define('WP_SITEURL','http://en.uacomputing.com');
+} else 
+if($lang == 'http://ru'){
+$_GET["lang"] = 'ru';
+define('WP_HOME','http://ru.uacomputing.com');
+define('WP_SITEURL','http://ru.uacomputing.com');
+} else {
+$_GET["lang"] = 'en';
+define('WP_HOME','http://uacomputing.com');
+define('WP_SITEURL','http://uacomputing.com');
+}
+?>
+
+<html <?php language_attributes(); ?> >
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>" />
+<meta name="description" content="Информационные технологии в Украине: истории и личности" />
+<meta name="keywords" content="компьютеры, первые компьютеры, ЭВМ, МЭСМ, история компьютеров, IT в Украине, вычислительная техника, Лебедев, Глушков, Амосов, МЭСМ, ОГАС, Плотников, Кудрявцев, Карат, логическая машина, машина логического мышления, Щукарев, Лашкарев, p-n переход, прообразы персональных компьютеров, УМШН Днепр, биокибернетика, Промінь, МИР, МИР-1, МИР-2, БЭСМ, Электронмаш, Буран, ракета Сатана, Хартрон, Южмаш, СС-18, досуг ученых, украинские ученые, ТАИР, МАВР, Борис Малиновский, Моралев, Новохатний, Алещенко, Брусенцов, Зиновий Рабинович, Катерина Ющенко, Квант, Китов, Хрущев, ВЦ АН УССР, винницкий Терминал, ПО Октябрь, ракета-носитель Энергия, киевский радиозавод, КБ Южное, Василенко, Amosov, OGAS, Biocybernetics, Computing history, History of Computing in Ukraine, ИТ в Украине: истории и личности, ІТ в Україні: історії та особистості, Борис Малиновський, Днепр, комп'ютер, українські вчені, досягнення українських вчених, історія СРСР, история СССР, вооружения советского флота, история советского флота, Звезда, soviet history, science, computer, ком'ютер, перший ком'ютер, first computer, первый компьютер, МЕОМ, МЕЛМ, Malinovsky, ЭВМ" />
+
+
+
+
+<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?52"></script>
+
+<script type="text/javascript">
+  VK.init({apiId: 3132790, onlyWidgets: true});
+</script>
+
+<title>
+<?php	
+/*	global $page, $paged;
+	wp_title( '|', true, 'right' );	
+	bloginfo( 'name' );*/
+	
+	if($_GET["lang"]=='ua'){
+		echo('Історія ІТ в Україні');
+		
+	}
+
+	if($_GET["lang"]=='ru'){
+		the_title();
+		echo(' | История ИТ в Украине');		
+	}
+	
+	if($_GET["lang"]=='en'){
+		echo('History of Computing in Ukraine');
+		
+	}
+
+	
+	?></title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/style.css"/>
+<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/components.css"/>
+<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/reset.css"/>
+<link rel="stylesheet" href="<?php bloginfo('template_url') ?>/js/basic-jquery-slider.css"/>
+<link rel="shortcut icon" href="<?php bloginfo('template_url') ?>/images/favicon.ico"></link>
+<meta property="fb:admins" content="1352755219"/>
+<meta property="fb:app_id" content="511155278901969"/>
+
+<!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script-->
+<script src="<?php bloginfo('template_url')?>/js/jquery-1.6.2.min.js"></script>
+<script src="<?php bloginfo('template_url')?>/js/basic-jquery-slider.js"></script>
+
+
+
+<?php
+	/* We add some JavaScript to pages with the comment form
+	 * to support sites with threaded comments (when in use).
+	 */
+	if ( is_singular() && get_option( 'thread_comments' ) )
+		wp_enqueue_script( 'comment-reply' );
+
+	/* Always have wp_head() just before the closing </head>
+	 * tag of your theme, or you will break many plugins, which
+	 * generally use this hook to add elements to <head> such
+	 * as styles, scripts, and meta tags.
+	 */
+	wp_head();
+?>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-34765032-1']);
+  _gaq.push(['_setDomainName', 'uacomputing.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body>
+
+<div id="mainWrapper">
+	<div id="header">
+	<!--table>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table-->
+		<div class="contentWrapper menu">
+			<div class="googleLogo"><a target="_blank" href="http://google-ukraine-blog.blogspot.com/"><img src="<?php bloginfo('template_url') ?>/images/<?php 
+			if($_GET["lang"]=='en'){
+				echo('logo-google-eng.png');
+			} if($_GET["lang"]=='ru'){
+				echo('logo-google.png');
+			} if($_GET["lang"]=='ua'){
+				echo('logo-google-ukr.png');
+			}
+			?>
+			"/></a></div>
+			<div class="logo"><a href="<?php bloginfo('url') ?>"><img class='left' src="<?php bloginfo('template_url') ?>/images/logo-red.png"/><img style="margin:20px 10px;" src="
+			<?php bloginfo('template_url') ?>/images/
+			<?php 
+			if($_GET["lang"]=='en'){
+				echo('uc-title-eng.png');
+			} if($_GET["lang"]=='ru'){
+				echo('uc-title.png');
+			} if($_GET["lang"]=='ua'){
+				echo('uc-title-ukr.png');
+			}
+			?>
+			"/></a></div>
+			<div class="lang">
+				<a class="<?php if($_GET["lang"]=='ua'){
+					echo('active');
+				} ?>" href="http://ua.uacomputing.com" id="ua">UA</a>
+				<a class="<?php if($_GET["lang"]=='en'){
+					echo('active');
+				} ?>" href="http://en.uacomputing.com" id="en">EN</a>
+				<a class="<?php if($_GET["lang"]=='ru'){
+					echo('active');
+				} ?>" href="http://ru.uacomputing.com" id="ru">RU</a>
+			</div>
+			<div class="navigation">
+				<?php wp_nav_menu( array( 'depth'  => 1 ) ); ?> 
+			</div>
+		</div>
+	</div>
+<script>
+	$(document).ready(function(e) {
+	if($('.lang #ru').hasClass('active')){
+		$('.page-item-6 a').text('Истории');
+		$('.page-item-9 a').text('Личности');
+		$('.page-item-482 a').text('Видео');		
+		$('.page-item-480 a').text('Блог');		
+		$('.page-item-524 a').text('Контакты');		
+	}	else if($('.lang #ua').hasClass('active')){
+		$('.page-item-6 a').text('Історії');
+		$('.page-item-9 a').text('Особистості');
+		$('.page-item-482 a').text('Відео');		
+		$('.page-item-480 a').text('Блог');		
+		$('.page-item-524 a').text('Контакти');
+	}   else if($('.lang #en').hasClass('active')){
+		$('.page-item-6 a').text('Stories');
+		$('.page-item-9 a').text('Personalities');
+		$('.page-item-482 a').text('Video');		
+		$('.page-item-480 a').text('Blog');		
+		$('.page-item-524 a').text('Contacts');				
+		}	
+	});
+</script>
