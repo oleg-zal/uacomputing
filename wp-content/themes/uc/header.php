@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
+session_start();
+//var_dump($_SESSION); die();
 /**
  * The Header for our theme.
  *
@@ -12,6 +14,30 @@
 ?>
 
 <?php
+function getLang() {
+    $curUrl = curPageURL();
+    $lang = null;
+    if (substr($curUrl, -2) == 'ru') {
+        $lang = 'ru';
+    } elseif (substr($curUrl, -2) == 'ua') {
+        $lang = 'ua';
+    } elseif (substr($curUrl, -2) == 'en') {
+        $lang = 'en';
+    }
+    //var_dump($lang); die();
+    if (!empty($lang)) {
+        $_SESSION['lang'] = $lang;
+        redirect_canonical('http://uatest.loc');
+        exit;
+    }
+    if (is_null($lang)) {
+        $lang = $_SESSION['lang'];
+        if (empty($lang)) {
+            $lang = 'en';
+        }
+    }
+    return $lang;
+}
 function curPageURL() {
  $pageURL = 'http';
  if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
@@ -25,7 +51,11 @@ function curPageURL() {
 }
 ?>
 <?php
-$lang = strtok(curPageURL(),'.');
+$lang = getLang();
+$_GET["lang"] = $lang;
+define('WP_HOME','http://uatest.loc');
+define('WP_SITEURL','http://uatest.loc');
+/*$lang = strtok(curPageURL(),'.');
 
 if($lang == 'http://ua'){
 $_GET["lang"] = 'ua';
@@ -45,7 +75,7 @@ define('WP_SITEURL','http://ru.uacomputing.com');
 $_GET["lang"] = 'en';
 define('WP_HOME','http://uacomputing.com');
 define('WP_SITEURL','http://uacomputing.com');
-}
+}*/
 ?>
 
 <html <?php language_attributes(); ?> >
@@ -212,13 +242,13 @@ if($_GET["lang"]=='en'){
 			<div class="lang">
 				<a class="<?php if($_GET["lang"]=='ua'){
 					echo('active');
-				} ?>" href="http://ua.uacomputing.com" id="ua">UA</a>
+				} ?>" href="http://uatest.loc/ua" id="ua">UA</a>
 				<a class="<?php if($_GET["lang"]=='en'){
 					echo('active');
-				} ?>" href="http://en.uacomputing.com" id="en">EN</a>
+				} ?>" href="http://uatest.loc/en" id="en">EN</a>
 				<a class="<?php if($_GET["lang"]=='ru'){
 					echo('active');
-				} ?>" href="http://ru.uacomputing.com" id="ru">RU</a>
+				} ?>" href="http://uatest.loc/ru" id="ru">RU</a>
 			</div>
 			<div class="navigation">
 				<?php wp_nav_menu( array( 'depth'  => 1 ) ); ?> 
