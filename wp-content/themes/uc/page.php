@@ -153,7 +153,7 @@
 					
 
 					for($i=0;$i<count($bios);$i++){
-						$biosArray = split('/',$bios[$i]);						
+                        $biosArray = explode('/',$bios[$i]);
   						if($_GET["lang"]=='en'){
 						
 						echo('<a class="bio" id="'.$biosArray[4].'" href="'.$bios[$i].'"><div class="imageWrapper">'.get_the_post_thumbnail(url_to_postid($bios[$i])).'</div><span>'.get_post_meta(url_to_postid($bios[$i]), 'title_eng', true).'</span></a><br/>');							

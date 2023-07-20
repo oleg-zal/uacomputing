@@ -1,5 +1,3 @@
-<?php wp_footer(); 
-?>
 
 <div class="contentWrapper footer">
 <div class="left">
@@ -50,3 +48,4 @@ Uacomputing.com © Всі права захищені, 2012
 </div>
 </body>
 </html>
+<?php wp_footer();?>

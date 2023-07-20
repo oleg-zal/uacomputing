@@ -5,7 +5,7 @@
 html{overflow-y:hidden}
 </style>
 <div class="middle" id="homePage" style=" height:100%; width:100%;">
-	<?php var_dump($_GET["lang"]);?>
+	<?php /*var_dump($_GET["lang"]);*/?>
     <div class="contentWrapper">
 		<div style="padding:60px 60px 40px 60px; color:#CCC; position:absolute; z-index:9999; width:800px; font-size:16px; margin:0 auto;" class="taglineWrapper">
 		<h1 class="left" style="width:auto; max-width:500px; clear:both">
