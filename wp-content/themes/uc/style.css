@@ -595,8 +595,8 @@ background:url('images/bg-contact-form-eng.png') top center no-repeat !important
 background:url('images/bg-contact-form-ukr.png') top center no-repeat !important;
 }
 
-.feedback .formWrapper input{width:220px; margin-left:350px; margin-bottom:24px}
-.feedback .formWrapper textarea{width:380px; height:130px; margin-left:350px;}
+.feedback .formWrapper input{width:400px; margin-left:350px; margin-bottom:24px}
+.feedback .formWrapper textarea{width:400px; height:130px; margin-left:350px;}
 .feedback .formWrapper input[type='submit']{
 margin-top:50px; 
 background:-moz-linear-gradient(center top , #f24325, #e82515) repeat scroll 0 0 transparent;

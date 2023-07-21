@@ -1,7 +1,7 @@
-﻿<?php /* Template Name: Contacts */ ?>
+﻿<?php /* Template Name: Feedback */ ?>
 <?php get_header(); ?>
 
-<form action="http://dynamic.uacomputing.com/sendContactForm.php">
+<form action="<?php bloginfo('template_url') ?>/sendContactForm.php">
 <?php if($_GET["lang"]=='en'){ ?>
 <div class="middle" id="articlePage">
 <div class="contentWrapper social"><?php include('social.php') ?></div>
@@ -54,7 +54,7 @@
 			<input type="hidden" name="lang" value="<?php echo($_GET["lang"]) ?>"/>
             <input name="name" type="text"/>
             <input name="email" type="text"/>
-<input type="file"/>
+            <!--<input type="file"/>-->
             <textarea name="comment"></textarea>
             <input type='submit' value="Отправить"/>
 					
@@ -85,7 +85,7 @@
 			<input type="hidden" name="lang" value="<?php echo($_GET["lang"]) ?>"/>
             <input name="name" type="text"/>
             <input name="email" type="text"/>
-<input type="file"/>
+            <!--<input type="file"/>-->
             <textarea name="comment"></textarea>
             <input type='submit' value="Відправити"/>			
             </div>
