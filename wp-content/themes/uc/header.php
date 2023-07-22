@@ -1,81 +1,8 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
-session_start();
-//var_dump($_SESSION); die();
-/**
- * The Header for our theme.
- *
- * Displays all of the <head> section and everything up till <div id="main">
- *
- * @package WordPress
- * @subpackage Twenty_Eleven
- * @since Twenty Eleven 1.0
- */
-?>
-
-<?php
-function getLang() {
-    $curUrl = curPageURL();
-    $lang = null;
-    if (substr($curUrl, -2) == 'ru') {
-        $lang = 'ru';
-    } elseif (substr($curUrl, -2) == 'ua') {
-        $lang = 'ua';
-    } elseif (substr($curUrl, -2) == 'en') {
-        $lang = 'en';
-    }
-    //var_dump($lang); die();
-    if (!empty($lang)) {
-        $_SESSION['lang'] = $lang;
-        redirect_canonical('http://uatest.loc');
-        exit;
-    }
-    if (is_null($lang)) {
-        $lang = $_SESSION['lang'];
-        if (empty($lang)) {
-            $lang = 'en';
-        }
-    }
-    return $lang;
-}
-function curPageURL() {
- $pageURL = 'http';
- if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
- $pageURL .= "://";
- if ($_SERVER["SERVER_PORT"] != "80") {
-  $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
- } else {
-  $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
- }
- return $pageURL;
-}
-?>
-<?php
-$lang = getLang();
-$_GET["lang"] = $lang;
-define('WP_HOME','http://uatest.loc');
-define('WP_SITEURL','http://uatest.loc');
-/*$lang = strtok(curPageURL(),'.');
-
-if($lang == 'http://ua'){
-$_GET["lang"] = 'ua';
-define('WP_HOME','http://ua.uacomputing.com');
-define('WP_SITEURL','http://ua.uacomputing.com');
-} else
-if($lang == 'http://en'){
-$_GET["lang"] = 'en';
-define('WP_HOME','http://en.uacomputing.com');
-define('WP_SITEURL','http://en.uacomputing.com');
-} else 
-if($lang == 'http://ru'){
-$_GET["lang"] = 'ru';
-define('WP_HOME','http://ru.uacomputing.com');
-define('WP_SITEURL','http://ru.uacomputing.com');
-} else {
-$_GET["lang"] = 'en';
-define('WP_HOME','http://uacomputing.com');
-define('WP_SITEURL','http://uacomputing.com');
-}*/
+    session_start();
+    $lang = getLang();
+    $_GET["lang"] = $lang;
 ?>
 
 <html <?php language_attributes(); ?> >
@@ -242,13 +169,13 @@ if($_GET["lang"]=='en'){
 			<div class="lang">
 				<a class="<?php if($_GET["lang"]=='ua'){
 					echo('active');
-				} ?>" href="http://uatest.loc/ua" id="ua">UA</a>
+				} ?>" href="<?php get_option('siteurl'); ?>/ua" id="ua">UA</a>
 				<a class="<?php if($_GET["lang"]=='en'){
 					echo('active');
-				} ?>" href="http://uatest.loc/en" id="en">EN</a>
+				} ?>" href="<?php get_option('siteurl'); ?>/en" id="en">EN</a>
 				<a class="<?php if($_GET["lang"]=='ru'){
 					echo('active');
-				} ?>" href="http://uatest.loc/ru" id="ru">RU</a>
+				} ?>" href="<?php get_option('siteurl'); ?>/ru" id="ru">RU</a>
 			</div>
 			<div class="navigation">
 				<?php wp_nav_menu( array( 'depth'  => 1 ) ); ?> 

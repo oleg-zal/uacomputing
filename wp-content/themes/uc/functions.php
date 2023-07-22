@@ -612,8 +612,8 @@ if ( !function_exists( 'send_mail' ) ) :
         $message .= "From: $email <br>";
         $message .= "Message <br>";
         $message .= str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['comment']);
-        $to = "foma.chudnov@gmail.com";
-        $subject = "Вопрос с сайта uatest.loc";
+        $to = get_option('admin_email');
+        $subject = "Вопрос с сайта " . get_option('siteurl');
         $headers  = "From: Ukrainian Computing <$to>";
         $headers .= 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
@@ -637,4 +637,39 @@ function outputMes() {
         unset($_SESSION['sent']);
     }
     echo '</div>';
+}
+function curPageURL() {
+    $pageURL = 'http';
+    if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+    $pageURL .= "://";
+    if ($_SERVER["SERVER_PORT"] != "80") {
+        $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+    } else {
+        $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+    }
+    return $pageURL;
+}
+function getLang() {
+    $curUrl = curPageURL();
+    $lang = null;
+    if (substr($curUrl, -2) == 'ru') {
+        $lang = 'ru';
+    } elseif (substr($curUrl, -2) == 'ua') {
+        $lang = 'ua';
+    } elseif (substr($curUrl, -2) == 'en') {
+        $lang = 'en';
+    }
+    //var_dump($lang); die();
+    if (!empty($lang)) {
+        $_SESSION['lang'] = $lang;
+        header('Location: ' . get_option('siteurl'));
+        exit;
+    }
+    if (is_null($lang)) {
+        $lang = $_SESSION['lang'];
+        if (empty($lang)) {
+            $lang = 'en';
+        }
+    }
+    return $lang;
 }
