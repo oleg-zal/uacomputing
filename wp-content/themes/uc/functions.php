@@ -600,3 +600,41 @@ add_theme_support( $feature );
 remove_filter('the_content', 'wptexturize');
 remove_filter('comment_text', 'wptexturize');
 remove_filter('the_title', 'wptexturize');
+
+add_action('admin_post_nopriv_feedback', 'send_mail');
+add_action('admin_post_feedback', 'send_mail');
+if ( !function_exists( 'send_mail' ) ) :
+    function send_mail() {
+        session_start();
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $message =  "Name: $name <br>";
+        $message .= "From: $email <br>";
+        $message .= "Message <br>";
+        $message .= str_replace(array("\r\n", "\r", "\n"), '<br>', $_POST['comment']);
+        $to = "foma.chudnov@gmail.com";
+        $subject = "Вопрос с сайта uatest.loc";
+        $headers  = "From: Ukrainian Computing <$to>";
+        $headers .= 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+        $st = wp_mail( $to, $subject, $message, $headers );
+        if ($st == 1 ) {
+            $_SESSION['sent'] = 1;
+        } else {
+            $_SESSION['sent'] = 0;
+        }
+        header('Location: ' . home_url(). '/contacts');
+    }
+endif;
+function outputMes() {
+    echo '<div class="feedbackAlert">';
+    if(isset($_SESSION['sent']) and ($_SESSION['sent'] =='1')) {
+        echo '<span class="green">Thanks, your message has been sent!</span>';
+    } elseif(isset($_SESSION['sent']) and ($_SESSION['sent'] =='0')){
+        echo '<span class="red">Something wrong :( Please try again later.</span>';
+    }
+    if (isset($_SESSION['sent'])) {
+        unset($_SESSION['sent']);
+    }
+    echo '</div>';
+}
