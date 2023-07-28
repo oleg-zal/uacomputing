@@ -1,6 +1,6 @@
 <?php /* Template Name: Front */ ?>
 <?php get_header() ?>
-<script src="http://uacomputing.com/langRedirect.js"></script>
+<!--<script src="http://uacomputing.com/langRedirect.js"></script>-->
 <style>
 html{overflow-y:hidden}
 </style>
