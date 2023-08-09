@@ -662,7 +662,7 @@ function getLang() {
     //var_dump($lang); die();
     if (!empty($lang)) {
         $_SESSION['lang'] = $lang;
-        $link = $_SERVER['HTTP_REFERER'] ?? get_option('siteurl');
+        $link = $_SERVER['HTTP_REFERER'] ?  $_SERVER['HTTP_REFERER'] : get_option('siteurl');
         header('Location: ' . $link);
         exit;
     }
