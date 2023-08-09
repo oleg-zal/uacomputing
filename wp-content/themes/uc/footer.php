@@ -17,8 +17,7 @@ Uacomputing.com © Все права защищены, 2012
 <?php } ?>
 
 <?php if($_GET["lang"]=='ua'){ ?>
-<b>Більше інформації на <a href="http://ukrainiancomputing.info">
-ukrainiancomputing.info</a></b><br/>
+<b>Більше інформації на <a href="http://www.icfcst.kiev.ua/index.html">www.icfcst.kiev.ua</a></b><br/>
 Uacomputing.com © Всі права захищені, 2012
 <?php } ?><br/><br/>
 </div>
