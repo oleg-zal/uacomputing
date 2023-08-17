@@ -23,7 +23,7 @@ get_header(); ?>
 	<!--div class="contentWrapper"><h1>Блог</h1></div-->
 	
 		<div class="contentWrapper article blog">	
-			<?php query_posts("post_type=post&posts_per_page=30"); ?>
+			<?php /*query_posts(); */?>
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>	
                 <div class="blogItem">
 					<a href="<?php the_permalink() ?>" class="title"><?php 
@@ -58,7 +58,13 @@ get_header(); ?>
 				
 				
 				</div>
-    		<?php endwhile; endif; ?>
+    		<?php endwhile;
+                $args = array(
+                    'prev_next' => false,
+                    'mid_size'     => 2,
+                );
+            echo get_the_posts_pagination($args);
+            endif; ?>
 
 
 		</div>
