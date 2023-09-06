@@ -97,12 +97,12 @@ var p15_8 = 'Амосов Н.М.';
 var p15_9 = 'Амосов Н.М. за компьютером.';
 var p15_aa = 'Николай Михайлович и Чарри';
 var p15_bb = 'Амосов с внучкой';
-$(document).ready(function(e){		$('.subscription').each(function(){$(this).text( $(this).text().replace('#photodescription1-1', p1_1) )});
+$(document).ready(function(e){		/*$('.subscription').each(function(){$(this).text( $(this).text().replace('#photodescription1-1', p1_1) )});
 		$('.content img[alt="#photodescription1-1"]').attr('alt', p1_1);
 		$('.subscription').each(function(){$(this).text( $(this).text().replace('#photodescription1-2', p1_2) )});
 		$('.content img[alt="#photodescription1-2"]').attr('alt', p1_2);
 		$('.subscription').each(function(){$(this).text( $(this).text().replace('#photodescription1-3', p1_3) )});
-		$('.content img[alt="#photodescription1-3"]').attr('alt', p1_3);
+		$('.content img[alt="#photodescription1-3"]').attr('alt', p1_3);*/
 		$('.subscription').each(function(){$(this).text( $(this).text().replace('#photodescription2-1', p2_1) )});
 		$('.content img[alt="#photodescription2-1"]').attr('alt', p2_1);
 		$('.subscription').each(function(){$(this).text( $(this).text().replace('#photodescription2-2', p2_2) )});

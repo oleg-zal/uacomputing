@@ -595,7 +595,7 @@ if ( function_exists( 'add_theme_support' ) ) {
     set_post_thumbnail_size( 180, 70, false);
 }
 
-add_theme_support( $feature );
+//add_theme_support( $feature );
 
 remove_filter('the_content', 'wptexturize');
 remove_filter('comment_text', 'wptexturize');
@@ -673,4 +673,27 @@ function getLang() {
         }
     }
     return $lang;
+}
+
+add_shortcode( 'uaimg', 'foobar_shortcode' );
+
+function foobar_shortcode( $atts, $part ){
+    $args = require get_template_directory() . '/data/args.php';
+    $i = intval($atts['i']);
+    $argum = $args[$part][$i];
+    $ind = 'title'.$atts['lang'];
+    //
+    $href = $argum['href'];
+    $src = $argum['src'];
+    $content = $argum[$ind];
+    //
+    $s = <<<EOL
+    <a href="{$href}" class="fancybox image" rel="gallery" aria-controls="fancybox-wrap" aria-haspopup="dialog">
+    <img aria-describedby="caption-attachment-770" decoding="async" loading="lazy" class="size-medium wp-image-770" 
+    title="{$content}" src="{$src}" alt="{$content}" 
+    >
+    <span class="subscription" id="p6">{$content}</span><div class="clear"></div>
+    </a>
+EOL;
+    return $s;
 }
