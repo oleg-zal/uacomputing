@@ -98,6 +98,8 @@ if($_GET["lang"]=='en'){
 	 * as styles, scripts, and meta tags.
 	 */
 	wp_head();
+    $class = isset($args['class'])  ? $args['class'] : '';
+    //print_r($class); //die();
 ?>
 
 
@@ -133,7 +135,7 @@ if($_GET["lang"]=='en'){
 </head>
 
 <body>
-
+------ <?php print_r($class); ?>
 <div id="mainWrapper">
 	<div id="header">
 	<!--table>
@@ -177,31 +179,39 @@ if($_GET["lang"]=='en'){
 					echo('active');
 				} ?>" href="<?php get_option('siteurl'); ?>/ru" id="ru">RU</a>
 			</div>
-			<div class="navigation">
-				<?php wp_nav_menu( array( 'depth'  => 1 ) ); ?> 
+			<div class="navigation <?=$class?>">
+				<?php wp_nav_menu( [
+                        'theme_location'  => 'primary',
+                        'container' => 'ul',
+                        'items_wrap'      => '<ul>%3$s</ul>',
+                        'depth'  => 1
+                        ]
+                ); ?>
 			</div>
 		</div>
 	</div>
 <script>
+    const ref = $('.navigation li a')
+    //console.log(ref[0].text)
 	$(document).ready(function(e) {
 	if($('.lang #ru').hasClass('active')){
-		$('.page-item-6 a').text('Истории');
-		$('.page-item-9 a').text('Личности');
-		$('.page-item-482 a').text('Видео');		
-		$('.page-item-480 a').text('Блог');		
-		$('.page-item-524 a').text('Контакты');		
+        ref[0].text = 'Истории';
+        ref[1].text = 'Личности';
+        ref[2].text = 'Видео';
+        ref[3].text = 'Блог';
+        ref[4].text = 'Контакты';
 	}	else if($('.lang #ua').hasClass('active')){
-		$('.page-item-6 a').text('Історії');
-		$('.page-item-9 a').text('Особистості');
-		$('.page-item-482 a').text('Відео');		
-		$('.page-item-480 a').text('Блог');		
-		$('.page-item-524 a').text('Контакти');
+        ref[0].text = 'Історії';
+        ref[1].text = 'Особистості';
+        ref[2].text = 'Відео';
+        ref[3].text = 'Блог';
+        ref[4].text = 'Контакти';
 	}   else if($('.lang #en').hasClass('active')){
-		$('.page-item-6 a').text('Stories');
-		$('.page-item-9 a').text('Personalities');
-		$('.page-item-482 a').text('Video');		
-		$('.page-item-480 a').text('Blog');		
-		$('.page-item-524 a').text('Contacts');				
+        ref[0].text = 'Stories';
+        ref[1].text = 'Personalities';
+        ref[2].text = 'Video';
+        ref[3].text = 'Blog';
+        ref[4].text = 'Contacts';
 		}	
 	});
 </script>

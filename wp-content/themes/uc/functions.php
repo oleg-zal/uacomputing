@@ -98,7 +98,7 @@ function twentyeleven_setup() {
 	add_theme_support( 'automatic-feed-links' );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'primary', __( 'Primary Menu', 'twentyeleven' ) );
+	register_nav_menu( 'primary', 'Primary Menu');
 
 	// Add support for a variety of post formats
 	add_theme_support( 'post-formats', array( 'aside', 'link', 'gallery', 'status', 'quote', 'image' ) );
@@ -696,4 +696,89 @@ function foobar_shortcode( $atts, $part ){
     </a>
 EOL;
     return $s;
+}
+
+add_action( 'init', 'uacomp_register_types' );
+
+function uacomp_register_types(){
+
+    register_post_type( 'videos', [
+        'label'  => null,
+        'labels' => [
+            'name'               => 'Videos', // основное название для типа записи
+            'singular_name'      => 'Video', // название для одной записи этого типа
+            'add_new'            => 'Добавить new Video', // для добавления новой записи
+            'add_new_item'       => 'Добавление new Video', // заголовка у вновь создаваемой записи в админ-панели.
+            'edit_item'          => 'Редактирование ', // для редактирования типа записи
+            'new_item'           => 'Новое Video', // текст новой записи
+            'view_item'          => 'Смотреть Video', // для просмотра записи этого типа.
+            'search_items'       => 'Искать Video', // для поиска по этим типам записи
+            'not_found'          => 'Не найдено', // если в результате поиска ничего не было найдено
+            'not_found_in_trash' => 'Не найдено в корзине', // если не было найдено в корзине
+            'parent_item_colon'  => '', // для родителей (у древовидных типов)
+            'menu_name'          => 'Videos', // название меню
+        ],
+        'public'              => true,
+        'menu_position'       => 20,
+        'menu_icon'           => 'dashicons-media-video',
+        'hierarchical'        => true,
+        'supports'            => [ 'title' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
+        'has_archive'         => true,
+    ] );
+
+}
+
+function get_ierar($data)
+{
+    /*$arr = [];
+    foreach ($data as $elem) {
+        $arr[$elem->ID] = $elem;
+    }*/
+    $output = [];
+    foreach ($data as $node) {
+        $id = $node->ID;
+        $postParent = $node->post_parent;
+        if ( !$postParent ) {
+            $output[$id] = [$id];
+        } else {
+            $output[$postParent]['child'][] = $id;
+        }
+    }
+    return $output;
+}
+//////////       Add column to Videos         /////////////////
+add_action( 'manage_pages_custom_column', 'uacomp_videos_order_action', 2, 2);
+function uacomp_videos_order_action( $column_name, $post_id)
+{
+    //echo "Column_name " . $column_name;
+    if ($column_name == 'order') {
+        $order = get_post_meta($post_id, 'order', 1);
+        echo $order ? $order : 0;
+    }
+
+}
+//
+add_filter( 'manage_' . 'videos'  . '_posts_columns', 'uacomp_videos_order_filter', 4 );
+function uacomp_videos_order_filter( $posts_columns) {
+    $posts_columns['order'] = 'Порядок';
+    return $posts_columns;
+}
+//////////////////////////////////////////////////////////////////
+function getData($field, $id)
+{
+    $title = '';
+    if($_GET["lang"]=='en'){
+        $title = get_field("{$field}_en", $id);
+    }
+    if($_GET["lang"]=='ua'){
+        $title = get_field("{$field}_ua", $id);
+    }
+    if($_GET["lang"]=='ru') {
+        if ($field == 'title') {
+            $title = get_the_title($id);
+        } else {
+            $title = get_field("{$field}_ru", $id);
+        }
+    }
+    return $title;
 }

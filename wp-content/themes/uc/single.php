@@ -1,7 +1,7 @@
 <?php
 
 
-get_header(); ?>
+get_header(null, ['class' => 'blog']); ?>
 
 <div class="middle" id="articlePage">
 <div class="contentWrapper social">	

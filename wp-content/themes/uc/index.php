@@ -12,7 +12,7 @@
  * @subpackage Twenty_Eleven
  */
 
-get_header(); ?>
+get_header(null, ['class' => 'blog']); ?>
 
 	<div class="contentWrapper social"><?php include('social.php') ?></div>
 
